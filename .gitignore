@@ -1,0 +1,15 @@
+# 环境变量文件
+.env
+
+# Python 虚拟环境
+venv/
+__pycache__/
+*.pyc
+
+# 输出文件
+result.json
+result.xlsx
+*.png
+
+# 临时文件
+/tmp/ 
