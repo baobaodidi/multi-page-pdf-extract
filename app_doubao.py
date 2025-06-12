@@ -163,8 +163,7 @@ def main():
         # 保存文件
         output_files = {
             "result_doubao.json": lambda: df_result.to_json("result_doubao.json", orient="records", force_ascii=False, indent=2),
-            "result_doubao.xlsx": lambda: df_result.to_excel("result_doubao.xlsx", index=False),
-            "result_doubao.md": lambda: save_markdown_result(df_result)
+            "result_doubao.xlsx": lambda: df_result.to_excel("result_doubao.xlsx", index=False)
         }
         
         for filename, save_func in output_files.items():
@@ -179,16 +178,7 @@ def main():
         import traceback
         traceback.print_exc()
 
-def save_markdown_result(df: pd.DataFrame):
-    """保存Markdown格式结果"""
-    with open("result_doubao.md", "w", encoding="utf-8") as f:
-        f.write("# PDF 字段抽取结果 (Doubao-1.5-vision-pro)\n\n")
-        f.write(f"**模型**: {MODEL}\n")
-        f.write(f"**处理文件**: {PDF_FILE}\n\n")
-        f.write("## 提取结果\n\n")
-        f.write(df.to_markdown(index=False, tablefmt="pipe"))
-        f.write(f"\n\n**共处理 {len(df)} 条记录**\n")
-        f.write(f"\n*生成时间: {pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')}*")
+
 
 if __name__ == "__main__":
     main() 
