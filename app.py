@@ -15,8 +15,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ---------- 0. 参数区 ----------
-PDF_FILE = "application_form.pdf"            # ← 用户上传的 PDF 路径
-FIELDS    = ["客户", "工程名称", "报价单位", "编制人", "手机号","日期"]  # ← 你要抽取的字段（可改）
+PDF_FILE = "CV00111931S提单.pdf"            # ← 用户上传的 PDF 路径
+FIELDS    = ["Place of Receipt", "Port of Discharge", "Port of Loading", "Place of Delivery", "Gross Weight","Measurement","Invoice No.","Invoice Date","Customer Name","Telephone","Fax","E-Mail","Customer Code"]  # ← 你要抽取的字段（可改）
 MODEL     = "qwen-vl-max"
 DPI       = 300                              # 分辨率（影响识别率&token 消耗）
 
@@ -56,7 +56,7 @@ def call_qwen_vl_max(image_blocks: List[Dict], fields: List[str]) -> str:
     system_prompt = {
         "type": "text",
         "text": (
-            "你是文档信息抽取引擎，只输出 JSON 数组，每页一个对象，"
+            "你是文档信息抽取引擎，只输出 JSON 数组，多页对应一个对象，"
             f"字段包含 {fields}，其余内容不要出现。"
         )
     }
